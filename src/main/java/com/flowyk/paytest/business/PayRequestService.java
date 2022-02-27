@@ -2,10 +2,18 @@ package com.flowyk.paytest.business;
 
 import com.flowyk.paytest.api.ClientRequest;
 import com.flowyk.paytest.api.PayRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Component
 public class PayRequestService {
+
+
+    @Autowired
+    private SignService signService;
 
     public PayRequest generateRequest(ClientRequest clientRequest) {
 
@@ -23,14 +31,21 @@ public class PayRequestService {
                 .setCurrAlphaCode("EUR")
                 .setCurrNumCode("EUR")
                 .setCurrNumAlpha("EUR")
-                .setTimestamp("2022-02-27 16:21:38")
+                .setTimestamp(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
                 .setRedirectSign("true");
-        result.setSign(generateSignFor(result));
+
+        String signedMessage = new StringBuilder()
+                .append(result.getMid())
+                .append(result.getAmount())
+                .append(result.getCurrAlphaCode())
+                .append(result.getMsTxnId())
+                .append(result.getFirstName())
+                .append(result.getFamilyName())
+                .append(result.getTimestamp()).toString();
+
+
+        result.setSign(signService.generateSignFor(signedMessage));
         return result;
     }
 
-    private String generateSignFor(PayRequest request) {
-        return "6AD3E242024BBA1ADC3E251BB1D7B96C";
-
-    }
 }
