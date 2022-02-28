@@ -3,12 +3,13 @@
 <head>
     <title>Return page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="/styles.css" rel="stylesheet"/>
 </head>
 <body>
-<div th:object="${payResponse}">
+<div th:object="${payResponse}" class="response">
     <p th:signValidation="${processResult.signValidation}">Podpis <span th:text="${processResult.signValidation}"></span></p>
-    <p>Transakcia: <span th:text="*{msTxnId}"></span></p>
-    <p>Suma: <span th:text="*{amount}"></span></p>
+    <p><span class="label">Transakcia:</span><span th:text="*{msTxnId}" class="value"></span></p>
+    <p><span class="label">Suma:</span><span th:text="|*{amount} *{currCode}|" class="value"></span></p>
     <p th:responseResult="*{result}"><span th:text="#{|response.${payResponse.result}|}"></span></p>
 </div>
 </body>

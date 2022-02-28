@@ -3,39 +3,43 @@
 <head>
     <title>Redirect page</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="/styles.css" rel="stylesheet"/>
 </head>
 <body>
-<form th:action="${paygateURL}" enctype="application/x-www-form-urlencoded"
-      method="post" id="payRequestForm">
-    <input type="hidden" name="Mid" th:value="${payRequest.mid}"/>
-    <input type="hidden" name="EshopId" th:value="${payRequest.eshopId}"/>
-    <input type="hidden" name="RURL" th:value="${returnURL}"/>
-    <input type="hidden" name="LangCode" th:value="${payRequest.langCode}"/>
+<div>
+    <form th:action="${paygateURL}" enctype="application/x-www-form-urlencoded"
+          method="post" id="payRequestForm">
+        <input type="hidden" name="Mid" th:value="${payRequest.mid}"/>
+        <input type="hidden" name="EshopId" th:value="${payRequest.eshopId}"/>
+        <input type="hidden" name="RURL" th:value="${returnURL}"/>
+        <input type="hidden" name="LangCode" th:value="${payRequest.langCode}"/>
 
-    <input type="hidden" name="ClientId" th:value="${payRequest.clientId}"/>
-    <input type="hidden" name="FirstName" th:value="${payRequest.firstName}"/>
-    <input type="hidden" name="FamilyName" th:value="${payRequest.familyName}"/>
-    <input type="hidden" name="Email" th:value="${payRequest.email}"/>
-    <input type="hidden" name="Country" th:value="${payRequest.country}"/>
+        <input type="hidden" name="ClientId" th:value="${payRequest.clientId}"/>
+        <input type="hidden" name="FirstName" th:value="${payRequest.firstName}"/>
+        <input type="hidden" name="FamilyName" th:value="${payRequest.familyName}"/>
+        <input type="hidden" name="Email" th:value="${payRequest.email}"/>
+        <input type="hidden" name="Country" th:value="${payRequest.country}"/>
 
-    <input type="hidden" name="MsTxnId" th:value="${payRequest.msTxnId}"/>
-    <input type="hidden" name="Amount" th:value="${payRequest.amount}"/>
-    <input type="hidden" name="CurrAlphaCode" th:value="${payRequest.currAlphaCode}"/>
-    <input type="hidden" name="CurrNumCode" th:value="${payRequest.currNumCode}"/>
-    <input type="hidden" name="CurrNumAlpha" th:value="${payRequest.currNumAlpha}"/>
-    <input type="hidden" name="Sign" th:value="${payRequest.sign}"/>
-    <input type="hidden" name="Timestamp" th:value="${payRequest.timestamp}"/>
-    <input type="hidden" name="RedirectSign" th:value="${payRequest.redirectSign}"/>
-    <input type="hidden" name="Debug" value="true"/>
-    <input type="submit" th:value="#{request.submitPay}"/>
-</form>
-<script type="text/javascript">
-    function formAutoSubmit () {
-        var frm = document.getElementById("payRequestForm");
-        frm.submit();
-    }
-    window.onload = formAutoSubmit;
-</script>
-<p th:text="#{redirect.javascriptMissing}"></p>
+        <input type="hidden" name="MsTxnId" th:value="${payRequest.msTxnId}"/>
+        <input type="hidden" name="Amount" th:value="${payRequest.amount}"/>
+        <input type="hidden" name="CurrAlphaCode" th:value="${payRequest.currAlphaCode}"/>
+        <input type="hidden" name="CurrNumCode" th:value="${payRequest.currNumCode}"/>
+        <input type="hidden" name="CurrNumAlpha" th:value="${payRequest.currNumAlpha}"/>
+        <input type="hidden" name="Sign" th:value="${payRequest.sign}"/>
+        <input type="hidden" name="Timestamp" th:value="${payRequest.timestamp}"/>
+        <input type="hidden" name="RedirectSign" th:value="${payRequest.redirectSign}"/>
+        <input type="hidden" name="Debug" value="true"/>
+        <input type="submit" th:value="#{request.submitPay}"/>
+    </form>
+    <script type="text/javascript">
+        function formAutoSubmit() {
+            var frm = document.getElementById("payRequestForm");
+            frm.submit();
+        }
+
+        window.onload = formAutoSubmit;
+    </script>
+    <p th:text="#{redirect.javascriptMissing}"></p>
+</div>
 </body>
 </html>

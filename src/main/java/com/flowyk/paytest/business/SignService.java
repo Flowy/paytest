@@ -1,6 +1,5 @@
 package com.flowyk.paytest.business;
 
-import com.flowyk.paytest.api.PayRequest;
 import org.apache.tomcat.util.buf.HexUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

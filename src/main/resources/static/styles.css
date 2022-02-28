@@ -1,0 +1,70 @@
+body > div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    border: 1px solid black;
+    border-radius: 5px;
+
+    padding: .5em;
+
+}
+
+.requestForm, .response {
+    width: 20em;
+}
+
+.requestForm > *, .response > * {
+    display: block;
+    margin: 7px auto 7px auto;
+    padding: 3px;
+    width: 80%;
+    white-space: nowrap;
+}
+
+.requestForm .logo {
+    width: 50%;
+}
+
+.label {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.value {
+    display: inline-block;
+    float: right;
+    text-align: right;
+}
+
+[signvalidation=OK] {
+    color: green
+}
+
+[signvalidation=FAIL] {
+    color: red
+}
+
+[responseresult] {
+    font-weight: bold;
+    text-align: center;
+}
+
+[responseresult=OK], [responseresult=AUTHORIZED] {
+    background: lightgreen;
+    color: green;
+}
+
+
+[responseresult=FAIL] {
+    background: pink;
+    color: red;
+}
+
+
+[responseresult=PENDING] {
+    background: lightgoldenrodyellow;
+    color: orange;
+}
