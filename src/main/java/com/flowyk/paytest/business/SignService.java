@@ -2,6 +2,7 @@ package com.flowyk.paytest.business;
 
 import com.flowyk.paytest.api.PayRequest;
 import org.apache.tomcat.util.buf.HexUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -18,8 +19,11 @@ import java.util.Arrays;
 @Component
 public class SignService {
 
-    private String key = "1234567812345678123456781234567812345678123456781234567812345678";
-    private String iv = "demoOMEDDEMOomed";
+    @Value("${sign.key}")
+    private String key;
+
+    @Value("${sign.iv}")
+    private String iv;
 
     private MessageDigest messageDigest;
     private Cipher cipher;

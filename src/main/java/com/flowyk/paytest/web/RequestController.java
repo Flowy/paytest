@@ -6,6 +6,7 @@ import com.flowyk.paytest.business.PayRequestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,12 @@ public class RequestController {
     @Autowired
     private PayRequestService payRequestService;
 
+    @Value("${paygate.url}")
+    private String paygateUrl;
+
+    @Value("${return.url}")
+    private String returnUrl;
+
     @GetMapping("/request")
     public String index(Model model) {
         model.addAttribute("clientRequest", new ClientRequest());
@@ -30,7 +37,8 @@ public class RequestController {
         LOG.debug("request with parameter: " + clientRequest);
         PayRequest payRequest = payRequestService.generateRequest(clientRequest);
         model.addAttribute(payRequest);
-        model.addAttribute("returnURL", "http://127.0.0.1:8024/rurl");
+        model.addAttribute("returnURL", returnUrl);
+        model.addAttribute("paygateURL", paygateUrl);
         return "redirect";
     }
 }

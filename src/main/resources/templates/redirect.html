@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<form action="https://test.24-pay.eu/pay_gate/paygt" enctype="application/x-www-form-urlencoded"
-      method="post">
+<form th:action="${paygateURL}" enctype="application/x-www-form-urlencoded"
+      method="post" id="payRequestForm">
     <input type="hidden" name="Mid" th:value="${payRequest.mid}"/>
     <input type="hidden" name="EshopId" th:value="${payRequest.eshopId}"/>
     <input type="hidden" name="RURL" th:value="${returnURL}"/>
@@ -27,8 +27,15 @@
     <input type="hidden" name="Timestamp" th:value="${payRequest.timestamp}"/>
     <input type="hidden" name="RedirectSign" th:value="${payRequest.redirectSign}"/>
     <input type="hidden" name="Debug" value="true"/>
-    <input type="submit"/>
+    <input type="submit" th:value="#{request.submitPay}"/>
 </form>
-This page is supposed to redirect you to pay gate. If that does not work, you have probably disabled javascript. Please use the button.
+<script type="text/javascript">
+    function formAutoSubmit () {
+        var frm = document.getElementById("payRequestForm");
+        frm.submit();
+    }
+    window.onload = formAutoSubmit;
+</script>
+<p th:text="#{redirect.javascriptMissing}"></p>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <body>
 <form action="#" th:action="@{/request}" th:object="${clientRequest}" method="post">
     <input type="text" name="Amount" pattern="[0-9,]+\.[0-9][0-9]" placeholder="0.00" th:field="*{amount}"/>
-    <input type="submit"/>
+    <input type="submit" th:value="#{request.submitPay}"/>
 </form>
 </body>
 </html>
